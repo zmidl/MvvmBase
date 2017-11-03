@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MvvmBase.View.TableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MvvmBase.View"
+             xmlns:vm="clr-namespace:MvvmBase.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="270" d:DesignWidth="200">
+    <UserControl.DataContext>
+        <vm:TableViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <HierarchicalDataTemplate x:Key="TreeViewItem"  ItemsSource="{Binding Items}">
+            <DockPanel LastChildFill="True" VerticalAlignment="Center" Margin="5,0,0,0" >
+                <TextBlock Margin="5,0,0,0" DockPanel.Dock="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource BlueColor}" Text="{Binding Name}"  />
+            </DockPanel>
+            <HierarchicalDataTemplate.ItemTemplate >
+                <DataTemplate >
+                    <DockPanel LastChildFill="True" VerticalAlignment="Center" Margin="10,0,0,0" >
+                        <CheckBox DockPanel.Dock="Left" Style="{StaticResource ElipseCheckBox}" Margin="12,3,3,3" IsChecked="{Binding IsChecked}" />
+                        <TextBlock DockPanel.Dock="Left"  Foreground="White" VerticalAlignment="Center" Text="{Binding Name}" Margin="5,0,0,0"/>
+                    </DockPanel>
+                </DataTemplate>
+            </HierarchicalDataTemplate.ItemTemplate>
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <TreeView ItemsSource="{Binding Groups}" Style="{StaticResource TreeView}" ItemTemplate="{StaticResource TreeViewItem}" Width="180" Height="250" Canvas.Top="86" Canvas.Left="30" />
+        <Button Style="{StaticResource Button}" Command="{Binding Leave}" Width="150" Height="30"/>
+    </StackPanel>
+</UserControl>
