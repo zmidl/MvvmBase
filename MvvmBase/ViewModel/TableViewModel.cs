@@ -10,11 +10,10 @@ namespace MvvmBase.ViewModel
         public ObservableCollection<Group> Groups { get; set; } = new ObservableCollection<Group>();
 
         public RelayCommand Leave { get; private set; }
-
+        public RelayCommand Leave2 { get; private set; }
         public TableViewModel()
         {
             this.Leave = new RelayCommand(() => ((IViewSwitch)this).Leave());
-
             for (int i = 0; i < 3; i++)
             {
                 var items = new ObservableCollection<Item>();

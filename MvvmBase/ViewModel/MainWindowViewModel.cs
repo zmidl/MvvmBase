@@ -53,6 +53,8 @@ namespace MvvmBase.ViewModel
 
         public RelayCommand ChangeLanguage { get; private set; }
 
+        public RelayCommand KeyInput { get; private set; }
+
         public MainWindowViewModel()
         {
             General.ChangeLanguage("zh-CN");
@@ -70,6 +72,8 @@ namespace MvvmBase.ViewModel
             this.ConverterTest = new RelayCommand(() => this.Count++);
 
             this.SwitchView = new RelayCommand(()=>General.SwitchView(0,1));
+
+            this.KeyInput = new RelayCommand(this.ExecuteKeyInput);
         }
 
         public void MouseDown()
@@ -86,6 +90,11 @@ namespace MvvmBase.ViewModel
         {
             General.ChangeLanguage(obj.ToString());
             this.Message = General.FindStringResource("MouseTest");
+        }
+
+        public void ExecuteKeyInput()
+        {
+            System.Windows.MessageBox.Show("Ctrl+Q");
         }
 
         public int Add(int a,int b)
